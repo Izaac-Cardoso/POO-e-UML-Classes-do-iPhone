@@ -1,0 +1,75 @@
+@startuml Iphone
+
+package iphone {
+
+    package apps {
+      class Phone {
+        + void call()
+        + void answerCall()
+        + void voiceMail()
+      }
+           
+      class Player {
+        + play() : void
+        + pause() : void
+        + musicSelection(String music) : void
+      }  
+
+      class Browser {
+        + printPage(String url) : void        
+        + newTab() : void
+        + refreshPage() : void
+      }
+
+    }
+
+    package interface {
+       interface MobilePhone {
+        call(int num) : void
+        answerCall() : void 
+        voiceMail() : void
+       }
+ 
+       interface MusicPlayer {
+        play() : void 
+        pause() : void 
+        musicSelection(String music) : void 
+       }
+
+        interface WebBrowser {
+        printPage(String url) : void 
+        newTab() : void 
+        refreshPage() : void
+       }
+    }     
+    
+    package cellPhone {
+        class CellPhone {
+          + object browser  
+          + object phone
+          + object player 
+
+          + ligar() : void
+          + desligar() : void
+          + reiniciar() : void
+        }
+
+        CellPhone *-- Browser
+        CellPhone *-- Player
+        CellPhone *-- Phone
+    }
+
+    Phone <|.. MobilePhone
+    Browser <|.. WebBrowser
+    Player <|.. MusicPlayer
+
+    class Iphone {
+        object iphone 
+        main() : void      
+    }
+    
+    Iphone -- CellPhone
+}
+
+
+@enduml
